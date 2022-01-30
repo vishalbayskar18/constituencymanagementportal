@@ -1,0 +1,41 @@
+
+<div id = "formid">
+    <h2> {{ workBrief }} </h2>
+<form method="post">
+    {% csrf_token %}
+    
+    Comment : <br>
+    <textarea name="textarea" rows="10" cols="50"></textarea><br>
+    
+    
+    Rating : <br>
+    <input type="radio" name="rating" value=1> Very Bad 
+    <input type="radio" name="rating" value=2> Bad 
+    <input type="radio" name="rating" value=3> Okay 
+    <input type="radio" name="rating" value=4> Good 
+    <input type="radio" name="rating" value=5> Excellent <br> <br>
+
+    
+    <input type="submit" value="Submit">
+    <INPUT Type="button" VALUE="Back" onClick="history.go(-1);return true;">
+
+</form>
+
+</div>
+
+<style type="text/css">
+
+#formid {
+    position : absolute ;
+    left : 20px;
+}
+    
+body {
+    background-color: #75bdd1 ;
+}
+
+h2 {
+    color : navy;
+}
+    
+</style>

@@ -1,0 +1,212 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'cms/style.css' %}" />
+
+
+<div id = "container">
+    
+    {% if constituencyDetail %}
+
+    <div id = "constituencyDetail">
+        <h1> Detail of your Constituency : {{ constituencyDetail.name }}</h1>
+        <ul>
+            <li> Constituency Name : {{ constituencyDetail.name }} </li>
+            <li> Constituency MP  : <a href="/cms/{{ constituencyDetail.mp_id }}/mp/"> {{ constituencyDetail.mp }} </a> </li>
+            <li> Constituency Population : {{ constituencyDetail.population }} </li>
+            <li> Constituency Rating : {{ rating }} </li>
+        </ul>
+    </div>
+    
+    {% else %}
+        <h1> No Detail is Sent </h1>
+    {% endif %}
+    
+    
+    <div id="workstatus">
+    
+    
+        <div class="workdone">
+            {% if workdone %}
+        
+                <h2> Completed </h2>
+                <ul>
+                    {% for work in workdone %}
+                        <li><a href="/cms/{{ work.id }}/work/">{{ work.brief }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <h2>No Complet work.</h2>
+            {% endif %}
+                
+        </div>
+        
+        
+        <div class="workinprogress">
+        
+            {% if workinprogress %}
+        
+                <h2> In-Progress </h2>
+                <ul>
+                    {% for work in workinprogress %}
+                        <li><a href="/cms/{{ work.id }}/work/">{{ work.brief }}</a></li>
+                    {% endfor %}
+                </ul>
+                
+            {% else %}
+                <h2>No In-Progress work</h2>
+            {% endif %}
+                
+        </div>
+        
+        <div class="worknew">
+        
+            {% if worknew %}
+        
+                <h2> New </h2>
+                <ul>
+                    {% for work in worknew %}
+                        <li><a href="/cms/{{ work.id }}/work/">{{ work.brief }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <h2>No new work</h2>
+            {% endif %}
+                
+        </div>
+        
+    </div>
+    
+    <div class="comments">
+        {% if comments %}
+        
+            <h2>Feedback for Constituency </h2>
+            <ul>
+                {% for comment in comments %}
+                    <li> Comment : {{ comment.detail }} , Rating : {{ comment.rating }}  </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h2>Comments are there.</h2>
+        {% endif %}
+                
+    </div>
+    
+        
+    <div id="btns">
+            
+        <a id="feebackid" href="{% url 'feedback' constituencyDetail.id 'CONSTITUENCY' %}">Feedback</a>
+        
+        <a href="{% url 'index' %}">Back</a>
+        
+    </div>
+    
+    
+</div>
+
+
+
+
+<style type="text/css">
+
+    body {
+        background-color : #75bdd1;
+    }
+
+    #constituencyDetail {
+        position: relative;
+        left : 100px;
+        padding-right : 100px;
+
+        
+    }
+    
+    #constituencyDetail li, .comments li {
+        position : relative;
+        left : -20px;
+    }
+    
+    #workstatus {
+        position:relative;
+        left : 25px;
+        right : 100px;
+        padding : 20px;
+    }
+    
+    
+    
+    
+    
+    
+    .workdone li, .workinprogress li, .worknew li {
+        position : relative;
+        left : -20px;
+    }
+    
+    h1, h2{
+        color : navy;
+    }
+    .comments {
+         position : relative;
+         clear : both;
+         left : 100px;
+         top : 20px;
+    }
+    
+    .comments h2 {
+        left : -20px;
+    }
+    
+    #btns {
+            clear : both;
+            position : relative;
+            left : 100px;
+            top : 40px;
+        
+        }
+        
+    #btns #feebackid {
+            margin-right : 20px;
+    }
+
+
+
+</style>
+
+{% if device.is_small %}
+
+	<style type="text/css">
+		
+	
+    .workdone, .workinprogress, .worknew {
+            clear : both;
+            width : 500px;
+            margin-left : 50px;
+            top : 50px;
+            left : 10px;
+        }
+    
+	
+
+	</style>
+	
+{% else %}
+	
+	<style type="text/css">
+	
+	
+    .workdone, .workinprogress, .worknew {
+            float : left;
+            margin-left : 50px;
+            top : 50px;
+            margin-right : 100px;
+            left : 10px;
+        }
+    
+
+	</style>
+
+	
+{% endif %}
+
+
+

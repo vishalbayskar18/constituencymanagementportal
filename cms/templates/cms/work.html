@@ -1,0 +1,93 @@
+
+{% if workDetail %}
+
+<div id = "workDetail">
+    <h1>Detail of Work : {{ workDetail.brief }}</h1>
+    <ul>
+        <li> Work Detail :  {{ workDetail.detail }} </a> </li>
+        <li> Work Status  : {{ workDetail.status }} </a> </li>
+        <li> Constituency : {{ workDetail.constituency }} </li>    
+        <li> Rating : {{ rating }} </li>
+    </ul>
+
+</div>
+
+<div class="comments">
+        {% if comments %}
+    
+            <h2>Feedback for Work </h2>
+            <ul>
+                {% for comment in comments %}
+                    <li> Comment : {{ comment.detail }} , Rating : {{ comment.rating }}  </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h2>Comments are there.</h2>
+        {% endif %}
+            
+</div>
+
+
+    <div id="btns">
+        
+        <a href="{% url 'feedback' workDetail.id 'WORK' %}">Feedback</a>
+
+        <a href="{% url 'constituency' workDetail.constituency_id %}">Back</a>
+
+
+    </div>
+
+
+
+
+{% else %}
+    <h1> No Detail is Sent </h1>
+{% endif %}
+
+<style>
+
+
+    
+    a {
+        margin-left: 65px;
+    }
+    #btns {
+         position: relative;
+         text-align: left;
+         margin-left: 20px;
+         top : 150px;
+        
+    }
+    body {
+        background-color: #75bdd1 ;
+    }
+    h1 {
+        color: maroon;
+        margin-left: 25px;
+    }
+    
+    h1, h2{
+        color : navy;
+    }
+    
+    #workDetail {
+    	 position: relative;
+         text-align: left;
+         left: 20px;
+         margin-left: 20px;
+    }
+
+
+    .comments {
+         position : relative;
+         top : 70px;
+         left : 42px;
+        
+    }
+    
+    .comments h2 {
+        position : relative;
+        left : 24px;
+    }
+
+</style>

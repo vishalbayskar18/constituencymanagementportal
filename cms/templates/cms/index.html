@@ -1,0 +1,175 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+    		$("#Go").click(function(){
+    			var consti = $("#sel").val();
+			window.location.href=consti + '/constituency/';
+    		});
+		});
+	</script>
+
+
+<div class="container">
+
+    <div class="mainHeading">
+			<h1> Welcome to Constituency Management System </h1>
+	</div>  
+	
+	<!--<div class="leftDiv">-->
+	<!--	<select id="sel">-->
+	<!--	  <option value="selectc">Select Your Constituency</option>-->
+	<!--	  <option value="const1">Constituency1 - 1</option>-->
+	<!--	  <option value="const2">Constituency2 - 2</option>-->
+	<!--	  <option value="const3">Constituency3 - 3</option>-->
+	<!--	</select> -->
+	<!--	<button id="Go"> Go </button>-->
+	<!--</div> <!-- End of leftDiv -->
+	
+	
+		
+	<div class="leftDiv">
+		<h2> Select Your Constituency </h2>
+		<select id="sel">
+			
+			{% for contituency in constituency_list %}
+				<option value= {{ contituency.id }} > {{ contituency.name }} </option>
+			{% endfor %}		  
+		
+		</select> 
+		<button id="Go"> Go </button>
+		
+		
+	</div> <!-- End of leftDiv -->
+	
+
+	<div class="rightDiv">
+		<div class="rightDiv1">
+			<h2> Best Constituency </h2>
+			<table border="1">
+			 	<tr>
+			  		<td>Ranking</td><td>Constituency Name</td><td>Rating </td><td>MP Name</td>
+			 	</tr>
+				{% for contituency in bestconstidic %}
+				<tr>
+				  		{% for incontituency in contituency %}
+				  			<td> {{ incontituency }} </td>
+				  		{% endfor %}
+			 	</tr>
+				{% endfor %}
+			</table>
+		</div>
+	
+	
+		<div class="rightDiv2">
+			<h2> Worst Constituency </h2>
+			<table border="1">
+			 	<tr>
+			  		<td>Ranking</td><td>Constituency Name</td><td>Rating </td><td>MP Name</td>
+			 	</tr>
+				{% for contituency in worstconstidic %}
+				<tr>
+				  		{% for incontituency in contituency %}
+				  			<td> {{ incontituency }} </td>
+				  		{% endfor %}
+			 	</tr>
+				{% endfor %}
+			</table>
+		</div>
+	
+	</div> <!-- End of right Div -->
+
+
+
+</div> <!-- End of container div -->
+
+<style type="text/css">
+	body {
+	    background-color: #E4F6EE ;
+	    background: url("../static/cms/images/constiback.jpg") no-repeat;
+	    background-size: 1500px 100px;
+	
+	}
+	h1 {
+			color : blue;
+			position : relative;
+			top : -20px;
+	}
+	option {
+		width : 100px;
+	}
+	.mainHeading {
+		text-align : center;
+	}
+	
+	.leftDiv {
+		float : left;
+		width : auto;
+		padding : 10px;
+		
+	}
+
+	.leftDiv .sel {
+		font-size : 110%;
+		
+	}
+	
+	.leftDiv h2 {
+		color : blue; 
+		font-size : 90%;
+	}
+
+	.rightDiv {
+		float : left;
+		position : relative;
+		width : auto;
+		margin-left : 150px;
+		
+	}
+	
+	.rightDiv1, .rightDiv2
+	{
+		float:left;
+		margin-right : 30px;
+		margin-left : 30px;
+	}
+	
+	.rightDiv1, .rightDiv1 tr {
+		color : green;
+		font-size: 15px;
+	}
+	
+	.rightDiv2, .rightDiv2 tr {
+		color : red;
+		font-size: 15px;
+	}
+	
+
+</style>
+
+{% if device.is_small %}
+
+	<style type="text/css">
+		
+	.rightDiv1, .rightDiv1 tr {
+		color : green;
+		font-size: 20px;
+	}
+	
+	.rightDiv2, .rightDiv2 tr {
+		color : red;
+		font-size: 20px;
+	}
+	
+
+	</style>
+	
+{% else %}
+	
+	<style type="text/css">
+	
+
+	</style>
+
+	
+{% endif %}
+	

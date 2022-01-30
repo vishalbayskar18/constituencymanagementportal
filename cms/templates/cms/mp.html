@@ -1,0 +1,31 @@
+
+{% if MPDetail %}
+<h1> Detail of MP : {{ MPDetail.name }}</h1>
+
+<div id = "mpdetail">
+    <ul>
+        <li> MP Name : {{ MPDetail.name }} </li>
+        <li> MP Age : {{ MPDetail.age }} </li>
+        <li> MP Education : {{ MPDetail.education }} </li>        
+    
+    </ul>
+
+</div>
+
+{% else %}
+    <h1> No Detail is Sent </h1>
+    
+{% endif %}
+
+
+<INPUT Type="button" VALUE="Back" onClick="history.go(-1);return true;">
+
+<style type="text/css">
+    
+    body {
+
+        background-color : #75bdd1;
+    }
+
+    
+</style>
